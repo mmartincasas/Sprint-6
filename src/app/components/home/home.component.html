@@ -1,2 +1,112 @@
-<p>home works!</p>
-<button class="btn btn-primary">From Home!</button>
+<!-- Image and text -->
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand mx-3" href="#">
+      <img src="logo.svg" width="30" height="30" class="d-inline-block align-top mx-1" alt="">
+      Frontender.itacademy
+    </a>
+</nav>
+
+<div class="container mt-3">
+
+    <div class="row">
+        <div class="col">
+            <div class="card card-head-custom">
+                <div class="card-body d-flex justify-content-center align-items-center text-center">
+                    <h1 class="card-title">Aconsegueix la millor qualitat</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        
+        <div class="col-10">
+
+            <form [formGroup]="formBudget">
+
+                <div class="card m-3 shadow">
+                    <div class="card-body">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-md-5 m-1">
+                                <h4 class="card-title">Seo</h4>
+                                <p class="card-text">Realització d'una campaña SEO completa</p>
+                            </div>
+                            <div class="col-md-3 m-1">
+                                <p class="card-text">
+                                    <span class="display-5"><b>300</b></span><span>€</span>
+                                </p>
+                            </div>
+                            <div class="col-md-2 m-1">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="seo-check" formControlName="seo" (change)="updateBudget()">
+                                    <label class="form-check-label" for="seo-check">
+                                        Afegir
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card m-3 shadow">
+                    <div class="card-body">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-md-5 m-1">
+                                <h4 class="card-title">Ads</h4>
+                                <p class="card-text">Llançament campaña de publicitat web</p>
+                            </div>
+                            <div class="col-md-3 m-1">
+                                <p class="card-text">
+                                    <span class="display-5"><b>400</b></span><span>€</span>
+                                </p>
+                            </div>
+                            <div class="col-md-2 m-1">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="ads-check" formControlName="ads" (change)="updateBudget()">
+                                    <label class="form-check-label" for="ads-check">
+                                        Afegir
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card m-3 shadow">
+                    <div class="card-body">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-md-5 m-1">
+                                <h4 class="card-title">Web</h4>
+                                <p class="card-text">Programació d'una web responsive completa</p>
+                            </div>
+                            <div class="col-md-3 m-1">
+                                <p class="card-text">
+                                    <span class="display-5"><b>500</b></span><span>€</span>
+                                </p>
+                            </div>
+                            <div class="col-md-2 m-1">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="web-check" formControlName="web" (change)="updateBudget()">
+                                    <label class="form-check-label" for="web-check">
+                                        Afegir
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row text-end mx-3 my-5">
+                    <div class="col">
+                        <h3>Preu pressupostat: {{ totalBudget() }} €</h3>
+                    </div>
+                </div>    
+            
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
