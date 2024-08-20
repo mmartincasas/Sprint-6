@@ -53,8 +53,16 @@ export class HomeComponent implements OnInit{
   }
 
   updateBudget(): void {
+
+    if (!this.budget.web){
+      this.budget.pages=0;
+      this.budget.languages=0;
+    }
+    
     this.budget.totalBudget = this.budgetService.calculateBudget(this.budget);
   }
+
+
 
 
 
