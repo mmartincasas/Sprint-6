@@ -94,11 +94,12 @@
                             </div>
                         </div>
                     </div>
+                    @if(budget.web){<app-panel (emitPanelValue)="setInfoPanel($event)"></app-panel>}
                 </div>
 
                 <div class="row text-end mx-3 my-5">
                     <div class="col">
-                        <h3>Preu pressupostat: {{ totalBudget() }} €</h3>
+                        <h3>Preu pressupostat: {{ budget.totalBudget }} €</h3>
                     </div>
                 </div>    
             

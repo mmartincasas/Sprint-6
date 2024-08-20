@@ -2,5 +2,7 @@ export default interface Budget {
     seo: boolean,
     ads: boolean,
     web: boolean,
-    totalBudget: number;
+    pages: number,
+    languages: number,
+    totalBudget?: number;
 }
