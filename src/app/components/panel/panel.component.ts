@@ -1,11 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule} from '@angular/forms'
 import { positiveIntegerValidator } from '../../validators/number-validators';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-panel',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ModalComponent],
   templateUrl: './panel.component.html',
   styleUrl: './panel.component.scss'
 })
@@ -13,6 +14,8 @@ export class PanelComponent implements OnInit {
 
   @Output()
   emitPanelValue: EventEmitter<any> = new EventEmitter <any>
+
+  @ViewChild(ModalComponent) newModal!: ModalComponent;
 
   public formWebPanel: FormGroup = new FormGroup({});
 
@@ -49,6 +52,8 @@ export class PanelComponent implements OnInit {
 
   }
 
-
+  openModal(type: string){
+    this.newModal.openModal(type);
+  }
 
 }
