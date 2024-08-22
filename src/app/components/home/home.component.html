@@ -20,8 +20,6 @@
 
     <div class="row justify-content-center">
         
-        <div class="col-10">
-
             <form [formGroup]="formBudget">
 
                 <div class="card m-3 shadow">
@@ -105,8 +103,70 @@
             
             </form>
 
-        </div>
     </div>
+
+    <div class="row justify-content-center">
+        <form [formGroup]="formClientBudget" class="col-12 col-md-8 col-lg-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">Registrar pressupost</h3>
+                    <div class="row g-3">
+                        <div class="col-12 col-md-4">
+                            <input type="text" class="form-control" placeholder="Nom" formControlName="name">
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <input type="text" class="form-control" placeholder="Teléfon" formControlName="phone">
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <input type="text" class="form-control" placeholder="Email" formControlName="email">
+                        </div>
+
+                        <div class="my-2">
+                            @if(formClientBudget.get('name')?.invalid && (formClientBudget.get('name')?.dirty || formClientBudget.get('name')?.touched)){
+
+                                <div class="row">
+                                    <small class="text-danger">Introdueix el nom.</small>
+                                </div>
+                            }
+                            @if(formClientBudget.get('phone')?.invalid && (formClientBudget.get('phone')?.dirty || formClientBudget.get('phone')?.touched)){
+
+                                <div class="row">
+                                    <small class="text-danger">Introdueix un número de teléfon (9 digits).</small>
+                                </div>
+                            }
+                            @if(formClientBudget.get('email')?.invalid && (formClientBudget.get('email')?.dirty || formClientBudget.get('email')?.touched)){
+
+                                <div class="row">
+                                    <small class="text-danger">Introdueix un email en el format correcte.</small>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100" (click)="createClientBudget()">Solicitar pressupost</button>
+                        </div>
+                        
+                        @if(submitBudget){
+                            <div class="row my-2">
+                                <small class="text-success">Demanda registrada correctament.</small>
+                            </div>
+                        }
+
+                        @if(errorSubmitBudget){
+                            <div class="row my-2">
+                                <small class="text-danger">No registrat. Revisa que les teves dades siguin correctes.</small>
+                            </div>
+                        }
+
+                    </div>
+                </div>         
+            </div>
+        </form>
+    </div>
+
+    <hr class="my-5" style="border-top: 2px dashed #454546;">
+
+    <app-budget-list></app-budget-list>
     
 </div>
 

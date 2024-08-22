@@ -4,5 +4,5 @@ export default interface Budget {
     web: boolean,
     pages: number,
     languages: number,
-    totalBudget?: number;
+    totalBudget: number;
 }

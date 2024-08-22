@@ -1,0 +1,67 @@
+
+<h3>Pressupostos en curs:</h3>
+
+<header class="d-flex flex-wrap justify-content-end">
+    <ul class="nav col-12 col-md-auto">
+        <li>
+            <a href="#" class="nav-link px-2 link-secondary"><i class="bi bi-search"></i></a>
+        </li>
+        <li>
+            <a href="#" class="nav-link px-2 link-secondary">Data</a>
+        </li>
+        <li>
+            <a href="#" class="nav-link px-2 link-secondary">Import</a>
+        </li>
+        <li>
+            <a href="#" class="nav-link px-2 link-secondary">Nom</a>
+        </li>
+    </ul>
+</header>
+
+
+@if(budgetClients.length>0) {
+
+    @for(client of budgetClients; track $index){
+
+        <div class="card m-3 shadow">
+            <div class="card-body">
+                <div class="row justify-content-between">
+                    <div class="col-md-3 m-1">
+                        <h4 class="card-title">{{budgetClients[$index].name}}</h4>
+                        <p class="card-text">
+                            {{budgetClients[$index].email}}<br>
+                            {{budgetClients[$index].phone}}
+                        </p>
+                    </div>
+                    <div class="col-md-4 m-1">
+                        <div class="card-text">
+                            <b>Serveis contractats:</b>
+                            <ul>
+                                @if(budgetClients[$index].hiredServices.seo){<li>SEO</li>}
+                                @if(budgetClients[$index].hiredServices.ads){<li>Ads</li>}
+                                @if(budgetClients[$index].hiredServices.web){
+                                    <li>Web 
+                                        ({{budgetClients[$index].hiredServices.pages}} pàgines, 
+                                        {{budgetClients[$index].hiredServices.languages}} llenguatges)</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 m-1">
+                        <p class="card-text">
+                            <b>Total:</b><br>
+                            <span class="display-5"><b>{{budgetClients[$index].hiredServices.totalBudget}}</b></span><span>€</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+
+}@else{
+
+    <p class="my-3">No hi ha dades que mostrar.</p>
+
+}
+<br><br>
