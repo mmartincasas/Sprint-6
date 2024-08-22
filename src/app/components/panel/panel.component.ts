@@ -29,11 +29,21 @@ export class PanelComponent implements OnInit {
       languages: new FormControl (0, [positiveIntegerValidator()])
     })
 
-    this.formWebPanel.valueChanges.subscribe(values => {
-      if (this.formWebPanel.valid) {
-        this.emitPanelValue.emit(values);
-      }
+    this.formWebPanel.valueChanges.subscribe(() => {
+        this.emitValidValues();
     });
+  }
+
+  emitValidValues() {
+    const pagesValue = this.formWebPanel.get('pages')?.value;
+    const languagesValue = this.formWebPanel.get('languages')?.value;
+  
+    const validValues: any = {};
+   
+    validValues.pages = (this.formWebPanel.get('pages')?.valid && pagesValue >= 0) ? pagesValue : 0;
+    validValues.languages = (this.formWebPanel.get('languages')?.valid && languagesValue >= 0) ? languagesValue : 0;
+   
+    this.emitPanelValue.emit(validValues);
   }
 
   updatePanelValue(controlName: string, action: string){
