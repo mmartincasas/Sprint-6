@@ -1,22 +1,35 @@
 
 <h3>Pressupostos en curs:</h3>
 
-<header class="d-flex flex-wrap justify-content-end">
-    <ul class="nav col-12 col-md-auto">
-        <li>
-            <a href="#" class="nav-link px-2 link-secondary"><i class="bi bi-search"></i></a>
-        </li>
-        <li>
-            <a href="#" class="nav-link px-2 link-secondary">Data</a>
-        </li>
-        <li>
-            <a href="#" class="nav-link px-2 link-secondary">Import</a>
-        </li>
-        <li>
-            <a href="#" class="nav-link px-2 link-secondary">Nom</a>
-        </li>
-    </ul>
-</header>
+
+<form [formGroup]="formSearch">
+    <header class="d-flex flex-wrap justify-content-end">
+        <ul class="nav align-items-center">
+            
+                <a class="btn btn-nav-custom px-2 link-secondary col-12 col-md-auto">          
+                    <div *ngIf="activeSearch; else onlySearchIcon">
+                        <div class="search-input position-relative">
+                            <input type="search" class="form-control form-control-sm ps-5" formControlName="search-name">
+                            <i class="bi bi-search position-absolute top-50 translate-middle-y search-icon" (click)="changeIconSearch()"></i>
+                        </div>
+                    </div>
+                    <ng-template #onlySearchIcon>
+                        <i class="bi bi-search" (click)="changeIconSearch()"></i>
+                    </ng-template> 
+                </a>
+            
+            <li>
+                <a class="btn btn-nav-custom px-2 link-secondary" (click)="budgetService.sortByDate()">Data</a>
+            </li>
+            <li>
+                <a class="btn btn-nav-custom px-2 link-secondary" (click)="budgetService.sortByTotalBudget()">Import</a>
+            </li>
+            <li>
+                <a class="btn btn-nav-custom px-2 link-secondary" (click)="budgetService.sortByName()">Nom</a>
+            </li>
+        </ul>
+    </header>
+</form>
 
 
 @if(budgetClients.length>0) {
@@ -29,8 +42,10 @@
                     <div class="col-md-3 m-1">
                         <h4 class="card-title">{{budgetClients[$index].name}}</h4>
                         <p class="card-text">
+                            {{budgetClients[$index].date.toLocaleString('es-ES', {hour12: false})}}<br>
                             {{budgetClients[$index].email}}<br>
                             {{budgetClients[$index].phone}}
+                            
                         </p>
                     </div>
                     <div class="col-md-4 m-1">

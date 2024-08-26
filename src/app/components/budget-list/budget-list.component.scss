@@ -1,0 +1,15 @@
+.btn-nav-custom {
+    border: 0;
+
+    &:hover {
+        color: #0e53de !important;
+    }
+
+    &:active {
+        font-weight: bold;
+    }
+}
+
+.search-icon {
+    right: 15px;
+ }

@@ -19,6 +19,7 @@ export class BudgetService {
       name: 'Ona Marín',
       phone: '651565656',
       email: 'ona@yahoo.es',
+      date: new Date('2024-07-15T09:00:00Z'),
       hiredServices: {
         seo: true,
         ads: false,
@@ -33,6 +34,7 @@ export class BudgetService {
       name: 'Anthony Rubio',
       phone: '651452323',
       email: 'rubio@microsoft.es',
+      date: new Date('2024-08-26T10:00:00Z'), 
       hiredServices: {
         seo: true,
         ads: true,
@@ -47,6 +49,7 @@ export class BudgetService {
       name: 'Mario Luengo',
       phone: '123456789',
       email: 'mario@msn.es',
+      date: new Date('2024-09-01T14:30:00Z'),
       hiredServices: {
         seo: false,
         ads: true,
@@ -100,6 +103,46 @@ export class BudgetService {
     
 
   }
+
+
+  sortByDate(){
+
+    return this.budgetClients.sort((a,b) => 
+      a.date.getTime() - b.date.getTime()
+    );
+
+  }
+
+  sortByTotalBudget(){
+
+    return this.budgetClients.sort((a,b) => 
+      a.hiredServices.totalBudget - b.hiredServices.totalBudget
+    );
+
+  }
+
+  sortByName(){
+
+    return this.budgetClients.sort((a,b) => 
+      a.name.localeCompare(b.name)
+    );
+
+  }
+
+
+  filterByName(value: string) {
+   
+    if (!value) {
+      return this.budgetClients;
+    }
+    
+    const filteredClients = this.budgetClients.filter(client => 
+      client.name.toLowerCase().includes(value.toLowerCase())
+    );
+    
+    return filteredClients;
+  }
+
 
 
 }

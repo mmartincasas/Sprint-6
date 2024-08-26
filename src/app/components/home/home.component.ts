@@ -80,7 +80,7 @@ export class HomeComponent implements OnInit {
 
     this.formClientBudget.markAllAsTouched();
     
-    if(this.formClientBudget.invalid){
+    if(this.formClientBudget.invalid||this.budget.totalBudget==0){
       this.submitBudget = false;
       this.errorSubmitBudget = true;
     }else{
@@ -89,6 +89,7 @@ export class HomeComponent implements OnInit {
         name: this.formClientBudget.get('name')?.value,
         phone: this.formClientBudget.get('phone')?.value,
         email: this.formClientBudget.get('email')?.value,
+        date: new Date(),
         hiredServices: this.budget
       }
 
