@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { BudgetService } from '../../services/budget.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { of } from 'rxjs';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -30,7 +29,6 @@ describe('HomeComponent', () => {
   it('should update budget when seo checkbox value changes', () => {
     spyOn(component, 'updateBudget').and.callThrough();
 
-    // Simulate changing the value of the 'seo' checkbox
     component.formBudget.controls['seo'].setValue(false);
     fixture.detectChanges();
 
@@ -40,7 +38,6 @@ describe('HomeComponent', () => {
   it('should update budget when ads checkbox value changes', () => {
     spyOn(component, 'updateBudget').and.callThrough();
 
-    // Simulate changing the value of the 'ads' checkbox
     component.formBudget.controls['ads'].setValue(true);
     fixture.detectChanges();
 
@@ -50,7 +47,6 @@ describe('HomeComponent', () => {
   it('should update budget when web checkbox value changes', () => {
     spyOn(component, 'updateBudget').and.callThrough();
 
-    // Simulate changing the value of the 'web' checkbox
     component.formBudget.controls['web'].setValue(false);
     fixture.detectChanges();
 

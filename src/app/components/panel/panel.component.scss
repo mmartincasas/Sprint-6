@@ -1,11 +1,10 @@
-/* Ocultar flechas en Chrome, Safari, Edge y otros navegadores WebKit */
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* Ocultar flechas en Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
 }

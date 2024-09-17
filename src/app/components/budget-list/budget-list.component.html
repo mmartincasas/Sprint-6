@@ -20,12 +20,33 @@
             
             <li>
                 <a class="btn btn-nav-custom px-2 link-secondary" [ngClass]="{'active': activeLink === 'date'}"  (click)="sortByDate()">Data</a>
+                @if(activeLink === 'date'){
+                    @if(sortByDateAsc){
+                        <i class="bi bi-caret-down-fill"></i>
+                    }@else{
+                        <i class="bi bi-caret-up-fill"></i>
+                    }
+                }
             </li>
             <li>
                 <a class="btn btn-nav-custom px-2 link-secondary" [ngClass]="{'active': activeLink === 'totalBudget'}" (click)="sortByTotalBudget()">Import</a>
+                @if(activeLink === 'totalBudget'){
+                    @if(sortByTotalBudgetAsc){
+                        <i class="bi bi-caret-down-fill"></i>
+                    }@else{
+                        <i class="bi bi-caret-up-fill"></i>
+                    }
+                }
             </li>
             <li>
                 <a class="btn btn-nav-custom px-2 link-secondary" [ngClass]="{'active': activeLink === 'name'}" (click)="sortByName()">Nom</a>
+                @if(activeLink === 'name'){
+                    @if(sortByNameAsc){
+                        <i class="bi bi-caret-down-fill"></i>
+                    }@else{
+                        <i class="bi bi-caret-up-fill"></i>
+                    }
+                }
             </li>
         </ul>
     </header>

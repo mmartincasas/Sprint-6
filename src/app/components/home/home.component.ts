@@ -20,6 +20,7 @@ import { ModalComponent } from '../modal/modal.component';
 export class HomeComponent implements OnInit {
 
   @ViewChild(ModalComponent) SubmitModal!: ModalComponent;
+  @ViewChild(BudgetListComponent) budgetList! : BudgetListComponent;
 
   public formBudget: FormGroup;
   public formClientBudget: FormGroup;
@@ -59,8 +60,6 @@ export class HomeComponent implements OnInit {
     this.initFormBudget();
   }
 
-  
-    
   initBudgetFromURL(): void {
     this.activatedRoute.queryParams.subscribe(params => {
       this.budget.seo = params['Seo'] ? true : false;
@@ -77,10 +76,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-
-
-
-
   setInfoPanel(panelValues: any): void {
     this.budget.pages = panelValues.pages;
     this.budget.languages = panelValues.languages;
@@ -92,7 +87,6 @@ export class HomeComponent implements OnInit {
     this.initBudgetFromURL();
 
     setTimeout(() => {
-
     this.formBudget = this.fb.group({
       seo: [this.budget.seo], 
       ads: [this.budget.ads], 
@@ -164,7 +158,7 @@ export class HomeComponent implements OnInit {
   cleanFormClientBudget () {
     this.errorSubmitBudget = false;
     this.formClientBudget.reset();
-    
+    this.budgetList.setActiveLink('');
   }
 
 }

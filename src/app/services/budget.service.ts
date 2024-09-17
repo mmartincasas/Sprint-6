@@ -13,10 +13,6 @@ export class BudgetService {
   priceWEB: number = 500;
   pricePL: number = 30;
 
-  sortByAscDate = true;
-  sortByAscTotalBudget = true;
-  sortByAscName = true;
-
 
     /*Hardcoded Clients*/
     clientBudgetH1: BudgetClient = {
@@ -102,50 +98,50 @@ export class BudgetService {
   }
 
 
-  sortByDate(){
+  sortByDate(sortByAscDate: boolean){
 
-    if (this.sortByAscDate){
-      this.sortByAscDate = false;
+    if (sortByAscDate){
+      sortByAscDate = false;
       return this.budgetClients.sort((a,b) => 
         a.date.getTime() - b.date.getTime()
       )
 
     }else{
-      this.sortByAscDate = true;
+      sortByAscDate = true;
       return this.budgetClients.sort((a,b) => 
         b.date.getTime() - a.date.getTime()
       )
     }
   }
 
-  sortByTotalBudget(){
+  sortByTotalBudget(sortByAscTotalBudget: boolean){
 
-    if (this.sortByAscTotalBudget){
-      this.sortByAscTotalBudget = false;
+    if (sortByAscTotalBudget){
+      sortByAscTotalBudget = false;
       return this.budgetClients.sort((a,b) => 
         a.hiredServices.totalBudget - b.hiredServices.totalBudget
       )
 
 
     }else{
-      this.sortByAscTotalBudget = true;
+      sortByAscTotalBudget = true;
       return this.budgetClients.sort((a,b) => 
         b.hiredServices.totalBudget - a.hiredServices.totalBudget
       )
     }
   }
 
-  sortByName(){
+  sortByName(sortByAscName: boolean){
 
-    if (this.sortByAscName){
+    if (sortByAscName){
 
-      this.sortByAscName = false;
+      sortByAscName = false;
       return this.budgetClients.sort((a,b) => 
         a.name.localeCompare(b.name)
       )
 
     }else{
-      this.sortByAscName = true;
+      sortByAscName = true;
       return this.budgetClients.sort((a,b) => 
         b.name.localeCompare(a.name)
       )

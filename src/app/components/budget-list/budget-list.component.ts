@@ -20,6 +20,9 @@ export class BudgetListComponent implements OnInit {
   public formSearch: FormGroup;
 
   activeLink: string = '';
+  sortByDateAsc: boolean = false;
+  sortByTotalBudgetAsc: boolean = false;
+  sortByNameAsc: boolean = false;
 
 
   constructor(protected budgetService: BudgetService, private fb: FormBuilder){
@@ -40,21 +43,23 @@ export class BudgetListComponent implements OnInit {
     this.activeSearch = !this.activeSearch;
   }
 
-
   sortByDate(){
     this.setActiveLink('date');
-    this.budgetService.sortByDate();
+    this.budgetService.sortByDate(this.sortByDateAsc);
+    this.sortByDateAsc = !this.sortByDateAsc;
   }
 
 
   sortByTotalBudget(): void {
     this.setActiveLink('totalBudget');
-    this.budgetService.sortByTotalBudget();
+    this.budgetService.sortByTotalBudget(this.sortByTotalBudgetAsc);
+    this.sortByTotalBudgetAsc = !this.sortByTotalBudgetAsc;
   }
 
   sortByName(): void {
     this.setActiveLink('name');
-    this.budgetService.sortByName();
+    this.budgetService.sortByName(this.sortByNameAsc);
+    this.sortByNameAsc = !this.sortByNameAsc;
   }
 
 
