@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import Budget from '../../models/budget';
 import BudgetClient from '../../models/budgetClient';
 import { FormBuilder, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -7,17 +7,19 @@ import { BudgetListComponent } from "../budget-list/budget-list.component";
 import { BudgetService } from '../../services/budget.service';
 import { isPhoneNumber } from '../../validators/number-validators';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ReactiveFormsModule, PanelComponent, BudgetListComponent, FormsModule, CommonModule],
+  imports: [ReactiveFormsModule, PanelComponent, BudgetListComponent, FormsModule, ModalComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 
 export class HomeComponent implements OnInit {
+
+  @ViewChild(ModalComponent) SubmitModal!: ModalComponent;
 
   public formBudget: FormGroup;
   public formClientBudget: FormGroup;
@@ -57,28 +59,27 @@ export class HomeComponent implements OnInit {
     this.initFormBudget();
   }
 
-   
-  initBudgetFromURL(): Promise<void> {
-
-    return new Promise((resolve) => {
-      this.activatedRoute.queryParams.subscribe(params => {
-        this.budget.seo = params['Seo'] ? true : false;
-        this.budget.ads = params['Ads'] ? true : false;
-        this.budget.web = params['Web'] ? true : false;
-          
-        if (this.budget.web) {
-          const panelValues = {
-            pages: params['Pages'] ? +params['Pages'] : 0,
-            languages: params['Lang'] ? +params['Lang'] : 0
-          };
-          this.setInfoPanel(panelValues);
-        }
-        console.log('INITBudgetFromURL:', this.budget);
-
-        resolve(); 
-      });
+  
+    
+  initBudgetFromURL(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.budget.seo = params['Seo'] ? true : false;
+      this.budget.ads = params['Ads'] ? true : false;
+      this.budget.web = params['Web'] ? true : false;
+      
+      if (this.budget.web) {
+        const panelValues = {
+          pages: params['Pages'] ? +params['Pages'] : 0,
+          languages: params['Lang'] ? +params['Lang'] : 0
+        };
+        this.setInfoPanel(panelValues);
+      }
     });
   }
+
+
+
+
 
   setInfoPanel(panelValues: any): void {
     this.budget.pages = panelValues.pages;
@@ -86,34 +87,17 @@ export class HomeComponent implements OnInit {
     this.updateBudget();
   }
 
-  async initFormBudget(){
+  initFormBudget(){
 
-    console.log('1:',this.budget)
+    this.initBudgetFromURL();
 
-    await this.initBudgetFromURL();
-
-    //EL SETTIMEOUT QUE HACE QUE FUNCIONE, LA PROMESA NO FUNCIONA!!!
-    /* */
     setTimeout(() => {
-
-    console.log('2:',this.budget, this.budget.seo)
-    console.log('Contenido de this.budget en JSON:', JSON.stringify(this.budget));
 
     this.formBudget = this.fb.group({
       seo: [this.budget.seo], 
       ads: [this.budget.ads], 
       web: [this.budget.web]  
     });
-
-    console.log('Valores de budget:');
-    console.log('SEO:', this.budget.seo);
-    console.log('Ads:', this.budget.ads);
-    console.log('Web:', this.budget.web);
-
-    console.log('Valores iniciales del formulario:');
-    console.log('SEO:', this.formBudget.get('seo')?.value);
-    console.log('Ads:', this.formBudget.get('ads')?.value);
-    console.log('Web:', this.formBudget.get('web')?.value);
 
     this.formBudget.valueChanges.subscribe(values => {
       this.budget = { ...this.budget, ...values };
@@ -132,10 +116,6 @@ export class HomeComponent implements OnInit {
     }
     
     this.budget.totalBudget = this.budgetService.calculateBudget(this.budget);
-
-    console.log('Saliendo de updateBudget', this.budget)
-    console.log('Contenido de this.budget en JSON:', JSON.stringify(this.budget));
-
     this.updateUrlParams();
 
   }
@@ -155,8 +135,6 @@ export class HomeComponent implements OnInit {
       queryParams: params,
       queryParamsHandling: 'replace'
     });
-
-    console.log('UPDATEURLPARAMS')
 
   }
 
@@ -178,10 +156,14 @@ export class HomeComponent implements OnInit {
       }
 
       this.budgetService.addClientBudget(clientBudget);
-
-      this.submitBudget = true;
-      this.errorSubmitBudget = false;
+      this.SubmitModal.openModal('SubmitBudgetModal')
+      this.cleanFormClientBudget();
     }
+  }
+
+  cleanFormClientBudget () {
+    this.errorSubmitBudget = false;
+    this.formClientBudget.reset();
     
   }
 

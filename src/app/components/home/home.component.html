@@ -151,11 +151,13 @@
                             <button class="btn btn-primary w-100" (click)="createClientBudget()">Solicitar pressupost</button>
                         </div>
                         
+                        <!--
                         @if(submitBudget){
                             <div class="row my-2">
                                 <small class="text-success">Demanda registrada correctament.</small>
                             </div>
                         }
+                        -->
 
                         @if(errorSubmitBudget){
                             <div class="row my-2">
@@ -171,6 +173,7 @@
 
     <hr class="my-5" style="border-top: 2px dashed #454546;">
 
+    <app-modal></app-modal>
     <app-budget-list></app-budget-list>
     
 </div>

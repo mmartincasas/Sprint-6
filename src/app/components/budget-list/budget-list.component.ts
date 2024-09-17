@@ -19,6 +19,9 @@ export class BudgetListComponent implements OnInit {
 
   public formSearch: FormGroup;
 
+  activeLink: string = '';
+
+
   constructor(protected budgetService: BudgetService, private fb: FormBuilder){
     this.budgetClients = budgetService.budgetClients;
 
@@ -36,6 +39,29 @@ export class BudgetListComponent implements OnInit {
   changeIconSearch(){
     this.activeSearch = !this.activeSearch;
   }
+
+
+  sortByDate(){
+    this.setActiveLink('date');
+    this.budgetService.sortByDate();
+  }
+
+
+  sortByTotalBudget(): void {
+    this.setActiveLink('totalBudget');
+    this.budgetService.sortByTotalBudget();
+  }
+
+  sortByName(): void {
+    this.setActiveLink('name');
+    this.budgetService.sortByName();
+  }
+
+
+  setActiveLink(link: string): void {
+    this.activeLink = link;
+  }
+
 
 
 }

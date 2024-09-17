@@ -1,27 +1,52 @@
-# BudgetsProject
+# Budgets Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.3.
+## 📄 Description
+
+This application was generated using **Angular CLI 18**. Its function is to generate a budget for a web service:
+
+- We can select three services (SEO, Ads, Web). For the web service, we can also select the number of pages and languages.
+- Once the budget is chosen, we can save it along with the client’s information (name, phone number, and email). This information will be validated.
+- At the bottom, we find the list of generated budgets, which can be sorted by date, amount, or name. We can also search for them by name.
+- Finally, the URL is updated according to the generated budget, so it can be shared with others before being finalized.
+
+## 💻 Technologies
+
+- [Angular CLI](https://angular.dev/) version 18.1.3.
+- [Bootstrap](https://getbootstrap.com/) via CDN
+- HTML5
+- SCSS
+- TypeScript
+
+## 📋 Requirements
+
+- Node.js and npm installed on your system. You can download them from [nodejs.org](https://nodejs.org/).
+
+- Angular CLI installed globally. You can install it with the following command:
+
+```bash
+npm install -g @angular/cli
+```
+
+## 🛠️ Instructions
+
+**✔️ Step 1:** Clone the repository:
+
+```bash
+git clone https://github.com/mmartincasas/Sprint-6
+```
+
+**✔️ Step 2:** Navigate to the project directory and install the npm dependencies:
+
+```bash
+npm install
+```
+
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Then, open `http://localhost:4200/` in your browser. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Further help Angular CLI
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+For more help with Angular CLI, use the `ng help` command or visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

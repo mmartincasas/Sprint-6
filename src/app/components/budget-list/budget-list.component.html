@@ -6,26 +6,26 @@
     <header class="d-flex flex-wrap justify-content-end">
         <ul class="nav align-items-center">
             
-                <a class="btn btn-nav-custom px-2 link-secondary col-12 col-md-auto">          
-                    <div *ngIf="activeSearch; else onlySearchIcon">
+                <a class="btn btn-nav-custom px-2 link-secondary col-12 col-md-auto">
+
+                    @if(activeSearch){
                         <div class="search-input position-relative">
                             <input type="search" class="form-control form-control-sm ps-5" formControlName="search-name">
                             <i class="bi bi-search position-absolute top-50 translate-middle-y search-icon" (click)="changeIconSearch()"></i>
                         </div>
-                    </div>
-                    <ng-template #onlySearchIcon>
+                    }@else{
                         <i class="bi bi-search" (click)="changeIconSearch()"></i>
-                    </ng-template> 
+                    }
                 </a>
             
             <li>
-                <a class="btn btn-nav-custom px-2 link-secondary" (click)="budgetService.sortByDate()">Data</a>
+                <a class="btn btn-nav-custom px-2 link-secondary" [ngClass]="{'active': activeLink === 'date'}"  (click)="sortByDate()">Data</a>
             </li>
             <li>
-                <a class="btn btn-nav-custom px-2 link-secondary" (click)="budgetService.sortByTotalBudget()">Import</a>
+                <a class="btn btn-nav-custom px-2 link-secondary" [ngClass]="{'active': activeLink === 'totalBudget'}" (click)="sortByTotalBudget()">Import</a>
             </li>
             <li>
-                <a class="btn btn-nav-custom px-2 link-secondary" (click)="budgetService.sortByName()">Nom</a>
+                <a class="btn btn-nav-custom px-2 link-secondary" [ngClass]="{'active': activeLink === 'name'}" (click)="sortByName()">Nom</a>
             </li>
         </ul>
     </header>
